@@ -1,0 +1,28 @@
+<p>product works!</p>
+{{name}} {{price}}
+{{1+1}}
+
+<!-- {{productService.productList | json}} -->
+<div [class]="'backColor'" [hidden]="hidden" [innerText]="name"></div>
+
+<div *ngIf="hidden">
+    <app-product-list [productList]="products" [title]="'Product List'" (selectedProduct)="getProduct($event)">
+    </app-product-list>
+</div>
+
+
+<button (click)="toggle()">Toggle</button>
+
+<button class="btn btn-success" (click)="addProduct()">
+    Add Product
+</button>
+
+
+
+<h2>
+    Selected Product
+</h2>
+
+{{product?.name}}
+
+{{product?.mfd}}
