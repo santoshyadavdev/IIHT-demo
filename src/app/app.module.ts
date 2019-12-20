@@ -23,9 +23,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ProductModule } from './product/product.module';
 import { CommentDetailsComponent } from './comments/comment-details/comment-details.component';
+import { LoginComponent } from './login/login.component';
+import { NamePipe } from './orders/pipe/name.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { CommentDetailsComponent } from './comments/comment-details/comment-deta
     CommentsListComponent,
     MainNavComponent,
     PageNotFoundComponent,
-    CommentDetailsComponent
+    CommentDetailsComponent,
+    LoginComponent,
+    NamePipe
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,8 @@ import { CommentDetailsComponent } from './comments/comment-details/comment-deta
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: OrdersService, useClass: NeworderService },
   {

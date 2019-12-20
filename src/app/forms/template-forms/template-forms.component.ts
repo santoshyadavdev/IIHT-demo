@@ -10,6 +10,8 @@ import { CommentService } from 'src/app/comments/services/comment.service';
 })
 export class TemplateFormsComponent implements OnInit {
 
+  isSubmitted = false;
+
   product: IProduct = {
     mfd: new Date(),
     name: '',
@@ -26,6 +28,7 @@ export class TemplateFormsComponent implements OnInit {
     this.commentService.addProduct(this.product).subscribe(
       (res)=> {
         console.log(res);
+        this.isSubmitted = true;
         productForm.resetForm();
       }
     )

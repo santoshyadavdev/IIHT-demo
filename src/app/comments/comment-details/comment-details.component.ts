@@ -9,10 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 export class CommentDetailsComponent implements OnInit {
 
   commentId = 0;
+  postId= 0;
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(res => this.commentId = + res.get('id'))
+    this.route.paramMap.subscribe(res => {
+    this.commentId = + res.get('id');
+    this.postId =+ res.get('postId');
+    })
   }
 
 }

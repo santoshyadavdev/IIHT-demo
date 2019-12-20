@@ -1,5 +1,6 @@
 <!-- {{comments$ | async | json}} -->
-<app-comments-list [commentList]="comments$ | async "></app-comments-list>
+<router-outlet></router-outlet>
+<app-comments-list [commentList]="commentList"></app-comments-list>
 <!-- {{commentList  | json}} -->
 <button class="btn btn-primary" (click)="addComment()">
     Add Comment

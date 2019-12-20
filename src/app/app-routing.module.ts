@@ -5,20 +5,35 @@ import { EmployeeComponent } from './employee/employee.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CommentDetailsComponent } from './comments/comment-details/comment-details.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { CommentGuard } from './comments/guards/comment.guard';
 // import { FormsComponent } from './forms/forms.component';
 
 
 const routes: Routes = [
-  { path: 'comment', component: CommentsComponent },
-  { path: 'comment/:id/edit', component: CommentDetailsComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'comment', component: CommentsComponent, 
+    canActivate: [AuthGuard],
+    canActivateChild : [AuthGuard],
+    children: [
+      { path: ':id/edit/:postId', component: CommentDetailsComponent },
+    ],
+    resolve: {
+      comments : CommentGuard
+    }
+  },
+  // { path: 'comment/:id/edit/:postId', component: CommentDetailsComponent },
   { path: 'employee', component: EmployeeComponent },
-  { path: 'order', component: OrdersComponent },
+  { path: 'order', component: OrdersComponent, canActivate: [AuthGuard] },
   {
     path: 'forms', loadChildren: () =>
-      import('./forms/forms.module').then(m => m.CustomFormsModule)
+      import('./forms/forms.module').then(m => m.CustomFormsModule),
+      canLoad : [AuthGuard]
   },
   // { path: 'forms', component : FormsComponent },
-  { path: '', redirectTo: 'employee', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

@@ -16,7 +16,8 @@
             <td>{{comment.postId}}</td>
             <td>{{comment.body}}</td>
             <td>{{comment.email}}</td>
-            <td><button class="btn btn-success" [routerLink]="['/comment',comment.id , 'edit']">Edit</button></td>
+            <td><button class="btn btn-success"
+                    [routerLink]="['/comment',comment.id , 'edit', comment.postId ]">Edit</button></td>
         </tr>
     </tbody>
 </table>

@@ -1,1 +1,19 @@
-{{orderList | json}}
+<!-- {{orderList | json}} -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Qty</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orderList">
+            <td>{{order.customerName | name : 'Male'}}</td>
+            <td>{{order.orderDate | date: 'dd-MMM-yyyy'}}</td>
+            <td>{{order.productQty | percent}}</td>
+            <td>{{order.total | currency: 'INR'}}</td>
+        </tr>
+    </tbody>
+</table>
