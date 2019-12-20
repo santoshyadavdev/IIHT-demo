@@ -3,9 +3,16 @@
 
 {{orderForm.value | json}}
 
-<form [formGroup]="orderForm">
+<form [formGroup]="orderForm" (ngSubmit)="placeOrder()">
     <div class="form-group">
         <input class="form-control" type="text" formControlName="name" placeholder="Customer Name">
+        <div *ngIf="orderForm.get('name').hasError('required')">
+            Please Enter Customer Name!
+        </div>
+        {{orderForm.get('name').errors| json}}
+        <div *ngIf="orderForm.get('name').errors?.minLength?.requiredLength > 0">
+            Customer name should be of 10 chars!
+        </div>
     </div>
     <div class="form-group">
         <input class="form-control" type="text" formControlName="email" placeholder="Customer Email">
@@ -16,6 +23,9 @@
     <div formGroupName="address">
         <div class="form-group">
             <input class="form-control" type="text" formControlName="addrLine1" placeholder="Address Line1">
+            <div>
+                {{orderForm.get('address.addrLine1').errors| json}}
+            </div>
         </div>
         <div class="form-group">
             <input class="form-control" type="text" formControlName="addrLine2" placeholder="Address Line2">
@@ -36,6 +46,9 @@
             <div [formGroupName]="i">
                 <div class="form-group">
                     <input class="form-control" type="text" formControlName="name" placeholder="Name">
+                    <div>
+                        {{orderForm.get(['products',i,'name']).errors| json}}
+                    </div>
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="number" formControlName="price" placeholder="Price">
@@ -49,5 +62,7 @@
             </div>
         </div>
     </div>
-
+    <div>
+        <button [disabled]="orderForm.invalid" class="btn btn-primary">Place Order</button>
+    </div>
 </form>

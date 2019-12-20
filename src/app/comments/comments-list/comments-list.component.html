@@ -1,1 +1,22 @@
-<p>comments-list works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>PostId</th>
+            <th>Body</th>
+            <th>Email</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let comment of commentList">
+            <td>{{comment.id}}</td>
+            <td>{{comment.name}}</td>
+            <td>{{comment.postId}}</td>
+            <td>{{comment.body}}</td>
+            <td>{{comment.email}}</td>
+            <td><button class="btn btn-success" [routerLink]="['/comment',comment.id , 'edit']">Edit</button></td>
+        </tr>
+    </tbody>
+</table>

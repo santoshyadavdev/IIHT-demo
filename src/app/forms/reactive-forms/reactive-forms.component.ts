@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import {
+  FormControl, FormGroup,
+  FormBuilder, FormArray, Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -22,32 +25,48 @@ export class ReactiveFormsComponent implements OnInit {
     this.searchText = new FormControl('google');
 
     this.orderForm = this.fb.group({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      mobile: new FormControl(''),
+      name: new FormControl({ value:'Test', disabled: true }, [Validators.required, Validators.minLength(10) , Validators.maxLength(15)]),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      mobile: new FormControl('', Validators.required),
       address: this.fb.group({
-        addrLine1: new FormControl(''),
+        addrLine1: new FormControl('', Validators.required),
         addrLine2: new FormControl(''),
         city: new FormControl(''),
         pin: new FormControl(''),
       }),
       products: this.fb.array([
-        this.fb.group({
-          name: new FormControl(''),
-          price: new FormControl(''),
-          qty: new FormControl('')
-        })
+        this.buildForm()
       ])
     })
+
+    this.bindFormData();
+  }
+
+  bindFormData() {
+    // this.orderForm.setValue({
+    //   name: 'Test2',
+    //   email: 'abc@gmail.com',
+    //   mobile: 'dsfdsfsdf'
+    // })
+
+    this.orderForm.patchValue({
+      name: 'Test2',
+      email: 'abc@gmail.com',
+      mobile: 'dsfdsfsdf'
+    })
+  }
+
+  private buildForm(): any {
+    return this.fb.group({
+      name: new FormControl('', Validators.required),
+      price: new FormControl(''),
+      qty: new FormControl('')
+    });
   }
 
   addProductControl() {
     this.productArray.push(
-      this.fb.group({
-        name: new FormControl(''),
-        price: new FormControl(''),
-        qty: new FormControl('')
-      })
+     this.buildForm()
     );
   }
 
@@ -57,6 +76,10 @@ export class ReactiveFormsComponent implements OnInit {
 
   removeAll() {
     this.productArray.clear();
+  }
+
+  placeOrder() {
+    console.log(this.orderForm.getRawValue());
   }
 
 }

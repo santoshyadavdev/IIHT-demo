@@ -4,8 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
-import { ProductListComponent } from './product/product-list/product-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeComponent } from './employee/employee.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,16 +23,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { FormsComponent } from './forms/forms.component';
-import { TemplateFormsComponent } from './forms/template-forms/template-forms.component';
-import { ReactiveFormsComponent } from './forms/reactive-forms/reactive-forms.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductModule } from './product/product.module';
+import { CommentDetailsComponent } from './comments/comment-details/comment-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
-    ProductListComponent,
     EmployeeComponent,
     HeaderComponent,
     ContentProjectDemoComponent,
@@ -44,12 +39,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommentsListComponent,
     MainNavComponent,
     PageNotFoundComponent,
-    FormsComponent,
-    TemplateFormsComponent,
-    ReactiveFormsComponent
+    CommentDetailsComponent
   ],
   imports: [
     BrowserModule,
+    ProductModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -58,9 +52,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule,
-    FormsModule,
-    ReactiveFormsModule
+    MatListModule
   ],
   providers: [{ provide: OrdersService, useClass: NeworderService },
   {

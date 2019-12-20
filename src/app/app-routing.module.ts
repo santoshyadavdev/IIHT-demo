@@ -3,17 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommentsComponent } from './comments/comments.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { OrdersComponent } from './orders/orders.component';
-import { ProductComponent } from './product/product.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { FormsComponent } from './forms/forms.component';
+import { CommentDetailsComponent } from './comments/comment-details/comment-details.component';
+// import { FormsComponent } from './forms/forms.component';
 
 
 const routes: Routes = [
   { path: 'comment', component: CommentsComponent },
+  { path: 'comment/:id/edit', component: CommentDetailsComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'order', component: OrdersComponent },
-  { path: 'product', component: ProductComponent },
-  { path: 'forms', component : FormsComponent },
+  {
+    path: 'forms', loadChildren: () =>
+      import('./forms/forms.module').then(m => m.CustomFormsModule)
+  },
+  // { path: 'forms', component : FormsComponent },
   { path: '', redirectTo: 'employee', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

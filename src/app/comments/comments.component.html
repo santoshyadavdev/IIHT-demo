@@ -1,4 +1,5 @@
-{{comments$ | async | json}}
+<!-- {{comments$ | async | json}} -->
+<app-comments-list [commentList]="comments$ | async "></app-comments-list>
 <!-- {{commentList  | json}} -->
 <button class="btn btn-primary" (click)="addComment()">
     Add Comment
