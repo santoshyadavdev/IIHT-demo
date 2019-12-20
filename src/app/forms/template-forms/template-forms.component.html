@@ -8,7 +8,7 @@
 
 <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)" novalidate>
     <div class="form-group">
-        <input #pname="ngModel" required minlength="10" maxlength="15" type="text" class="form-control"
+        <input [appHover]="'green'" #pname="ngModel" required minlength="10" maxlength="15" type="text" class="form-control"
             [(ngModel)]="product.name" name="pname" placeholder="Product Name">
         <div *ngIf="!pname.pristine && pname.errors?.required">
             Please enter a product Name!

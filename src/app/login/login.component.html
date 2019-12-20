@@ -4,10 +4,10 @@
 {{errorMessage}}
 <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
  <div class="form-group">
-     <input type="text" class="form-control" formControlName="userName" placeholder="Please Enter User Name">
+     <input [appHover]="'green'" type="text" class="form-control" formControlName="userName" placeholder="Please Enter User Name">
  </div>
  <div class="form-group">
-        <input type="password" class="form-control" formControlName="password" placeholder="Please Enter Password">
+        <input [appHover]="'red'"  type="password" class="form-control" formControlName="password" placeholder="Please Enter Password">
  </div>
  <div>
      <button class="btn btn-primary">Login</button>

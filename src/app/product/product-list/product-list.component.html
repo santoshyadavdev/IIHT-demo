@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <tr [ngClass]="e? 'even': 'odd'"
-            *ngFor="let product of productList;let i=index; let e=even; let o=odd; trackBy: trackByFn">
+            *ngFor="let product of productList;let i=index; let e=even; let o=odd">
             <td>{{i+1}}</td>
             <td>{{e}}</td>
             <td>{{o}}</td>

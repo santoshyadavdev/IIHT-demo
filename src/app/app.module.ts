@@ -28,6 +28,9 @@ import { ProductModule } from './product/product.module';
 import { CommentDetailsComponent } from './comments/comment-details/comment-details.component';
 import { LoginComponent } from './login/login.component';
 import { NamePipe } from './orders/pipe/name.pipe';
+import { HoverDirective } from './directive/hover.directive';
+import { SharedModule } from './shared/shared.module';
+import { APP_SERVICE, APP_CONFIG } from './valuprovider/app.config.service';
 
 @NgModule({
   declarations: [
@@ -57,13 +60,15 @@ import { NamePipe } from './orders/pipe/name.pipe';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [{ provide: OrdersService, useClass: NeworderService },
   {
     provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor,
     multi: true
-  }
+  },
+  { provide: APP_SERVICE, useValue: APP_CONFIG }
   ],
   bootstrap: [AppComponent]
 })
